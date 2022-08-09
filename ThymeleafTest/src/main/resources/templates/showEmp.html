@@ -4,19 +4,23 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        table,table tr,table tr td,table tr th{
+        table, table tr, table tr td, table tr th {
             border: 1px solid saddlebrown;
         }
-        table{
-            border-collapse:collapse;
+
+        table {
+            border-collapse: collapse;
         }
-        table tr td, table tr th{
+
+        table tr td, table tr th {
             padding: 5px;
         }
-        .classA{
+
+        .classA {
             background-color: #fff;
         }
-        .classB{
+
+        .classB {
             background-color: #ccc;
         }
     </style>
@@ -63,10 +67,26 @@
     </tr>
 </table>
 
+<hr/>
+request:<br/>
+<span th:text="${#httpServletRequest.getAttribute('msg')}"></span><br/>
+<span th:text="${#request.getAttribute('msg')}"></span><br/>
+<!--最简单写法-->
+<span th:text="${msg}"></span><br/>
+session:<br/>
+<span th:text="${#httpSession.getAttribute('msg')}"></span><br/>
+<span th:text="${#session.getAttribute('msg')}"></span><br/>
+<!--最简单写法-->
+<span th:text="${session.msg}"></span><br/>
+application:<br/>
+<span th:text="${#servletContext.getAttribute('msg')}"></span><br/>
+<!--最简单写法-->
+<span th:text="${application.msg}"></span><br/>
+
 <script>
     function deleteItem(empno, ename) {
-        let yes =confirm(`你确定要删除编号为${empno}的员工${ename}吗？`);
-        if(yes){
+        let yes = confirm(`你确定要删除编号为${empno}的员工${ename}吗？`);
+        if (yes) {
             window.location.href = `/ThymeleafTest/deleteItem?empno=${empno}&ename=${ename}`;
         }
     }
