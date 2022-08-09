@@ -53,16 +53,23 @@
         <td th:text="${emp.ename}"></td>
         <td th:text="${emp.job}"></td>
         <td th:text="${emp.mgr}"></td>
-        <td th:text="${emp.hiredate}"></td>
+        <td th:text="${#dates.format(emp.hiredate,'yyyy-MM-dd')}"></td>
         <td th:text="${emp.sal}"></td>
-        <td th:text="${emp.comm}"></td>
+        <td th:text="${#numbers.formatDecimal(emp.comm,1,'COMMA',2,'POINT')}"></td>
         <td th:text="${emp.deptno}"></td>
         <td>
-            <a href="javascript:;" th:href="@{deleteItem(empno=${emp.empno},ename=${emp.ename})}">删除</a>
+            <a href="javascript:;" th:onclick="deleteItem([[${emp.empno}]],[[${emp.ename}]])">删除</a>
         </td>
     </tr>
 </table>
 
-
+<script>
+    function deleteItem(empno, ename) {
+        let yes =confirm(`你确定要删除编号为${empno}的员工${ename}吗？`);
+        if(yes){
+            window.location.href = `/ThymeleafTest/deleteItem?empno=${empno}&ename=${ename}`;
+        }
+    }
+</script>
 </body>
 </html>

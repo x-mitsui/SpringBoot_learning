@@ -25,8 +25,9 @@ public class EmpController {
         return "showEmp";
     }
 
-    @RequestMapping("deleteItem")
+    @RequestMapping("/deleteItem")
     public String deleteItem(Integer empno, String ename) {
+        System.out.println("jirnu");
         boolean isSuccess = empService.deleteEmp(empno, ename);
         if (isSuccess) {
             System.out.println("删除成功");
